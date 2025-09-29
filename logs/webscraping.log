@@ -1,0 +1,135 @@
+2025-09-29 00:44:46,381 - INFO - Iniciando Fase 1: Descobrindo URLs dos menores arquivos
+2025-09-29 00:44:46,382 - INFO - WebscrapingStone inicializado
+2025-09-29 00:44:46,382 - INFO - Endpoint configurado: https://arquivos.receitafederal.gov.br/dados/cnpj/dados_abertos_cnpj/2025-09/
+2025-09-29 00:44:46,382 - INFO - Iniciando webscraping completo
+2025-09-29 00:44:46,383 - INFO - Acessando endpoint...
+2025-09-29 00:44:48,759 - INFO - Sucesso: status 200, resposta 8961 bytes
+2025-09-29 00:44:48,759 - INFO - Extraindo arquivos .zip da página
+2025-09-29 00:44:49,344 - INFO -   Empresas: Empresas0.zip – 439.03 MB
+2025-09-29 00:44:50,003 - INFO -   Empresas: Empresas1.zip – 74.24 MB
+2025-09-29 00:44:50,547 - INFO -   Empresas: Empresas2.zip – 75.42 MB
+2025-09-29 00:44:51,079 - INFO -   Empresas: Empresas3.zip – 81.19 MB
+2025-09-29 00:44:51,813 - INFO -   Empresas: Empresas4.zip – 86.15 MB
+2025-09-29 00:44:52,543 - INFO -   Empresas: Empresas5.zip – 92.98 MB
+2025-09-29 00:44:53,350 - INFO -   Empresas: Empresas6.zip – 90.07 MB
+2025-09-29 00:44:54,375 - INFO -   Empresas: Empresas7.zip – 94.44 MB
+2025-09-29 00:44:55,194 - INFO -   Empresas: Empresas8.zip – 94.59 MB
+2025-09-29 00:44:56,020 - INFO -   Empresas: Empresas9.zip – 90.35 MB
+2025-09-29 00:44:56,730 - INFO -   Socios: Socios0.zip – 190.52 MB
+2025-09-29 00:44:57,431 - INFO -   Socios: Socios1.zip – 47.25 MB
+2025-09-29 00:44:58,069 - INFO -   Socios: Socios2.zip – 46.86 MB
+2025-09-29 00:44:58,879 - INFO -   Socios: Socios3.zip – 46.96 MB
+2025-09-29 00:44:59,619 - INFO -   Socios: Socios4.zip – 46.82 MB
+2025-09-29 00:45:00,351 - INFO -   Socios: Socios5.zip – 47.33 MB
+2025-09-29 00:45:01,031 - INFO -   Socios: Socios6.zip – 46.79 MB
+2025-09-29 00:45:01,747 - INFO -   Socios: Socios7.zip – 47.07 MB
+2025-09-29 00:45:02,566 - INFO -   Socios: Socios8.zip – 46.71 MB
+2025-09-29 00:45:03,394 - INFO -   Socios: Socios9.zip – 47.24 MB
+2025-09-29 00:45:03,394 - INFO - Total de arquivos relevantes: 20
+2025-09-29 00:45:03,394 - INFO - Identificando menores arquivos por tipo
+2025-09-29 00:45:03,394 - INFO - Menor empresas: Empresas1.zip – 74.24 MB
+2025-09-29 00:45:03,394 - INFO - Menor socios: Socios8.zip – 46.71 MB
+2025-09-29 00:45:03,400 - INFO - Resultado salvo em webscraping_resultado.json
+2025-09-29 00:45:03,400 - INFO - Webscraping concluído com sucesso
+2025-09-29 00:45:03,402 - INFO - Fase 1 concluída. Arquivos para baixar: ['empresas', 'socios']
+2025-09-29 00:45:03,402 - INFO - Iniciando Fase 2: Baixando arquivos selecionados
+2025-09-29 00:45:03,402 - INFO - BronzeLayer initialized. Path: C:\Users\Admin\Desktop\Vinicius\stone-cnpj-pipeline\data\bronze
+2025-09-29 00:45:03,403 - INFO - Starting download of empresas.zip from https://arquivos.receitafederal.gov.br/dados/cnpj/dados_abertos_cnpj/2025-09/Empresas1.zip
+2025-09-29 00:45:32,135 - INFO - Download completed: C:\Users\Admin\Desktop\Vinicius\stone-cnpj-pipeline\data\bronze\empresas.zip (74.24 MB)
+2025-09-29 00:45:32,137 - INFO - Starting download of socios.zip from https://arquivos.receitafederal.gov.br/dados/cnpj/dados_abertos_cnpj/2025-09/Socios8.zip
+2025-09-29 00:45:45,967 - INFO - Download completed: C:\Users\Admin\Desktop\Vinicius\stone-cnpj-pipeline\data\bronze\socios.zip (46.71 MB)
+2025-09-29 00:45:45,968 - INFO - Fase 2 concluída. Arquivos baixados: ['empresas', 'socios']
+2025-09-29 00:45:45,968 - INFO - Iniciando Fase 3: Processando e limpando dados
+2025-09-29 00:45:45,969 - INFO - SilverLayer initialized. Path: C:\Users\Admin\Desktop\Vinicius\stone-cnpj-pipeline\data\silver
+2025-09-29 00:45:45,971 - INFO - Tentando processar arquivo empresas: K3241.K03200Y1.D50913.EMPRECSV
+2025-09-29 00:45:52,415 - INFO - Aplicando tipos � s empresas
+2025-09-29 00:46:00,434 - INFO - Tipos � s empresas aplicados com sucesso
+2025-09-29 00:46:07,435 - INFO - Validação CNPJ: 6639/4494860 (0.1%) válidos
+2025-09-29 00:46:07,449 - WARNING - Problemas de validação CNPJ para empresas
+2025-09-29 00:46:12,198 - INFO - Empresas salvas em C:\Users\Admin\Desktop\Vinicius\stone-cnpj-pipeline\data\silver\empresas_silver.parquet com 4494860 registros
+2025-09-29 00:46:12,201 - INFO - Tentando processar arquivo socios: K3241.K03200Y8.D50913.SOCIOCSV
+2025-09-29 00:46:19,568 - INFO - Aplicando tipos aos sócios
+2025-09-29 00:46:21,313 - INFO - Tipos aos sócios aplicados com sucesso
+2025-09-29 00:46:27,198 - INFO - Validação CNPJ: 2019150/2019150 (100.0%) válidos
+2025-09-29 00:46:27,477 - INFO - Validação TIPO_SOCIO: 0/2019150 (0.0%) válidos
+2025-09-29 00:46:27,480 - WARNING - Problema na validacao para socios
+2025-09-29 00:46:28,952 - INFO - Socios salvos em C:\Users\Admin\Desktop\Vinicius\stone-cnpj-pipeline\data\silver\socios_silver.parquet com 2019150 registros
+2025-09-29 00:46:28,953 - INFO - Fase 3 concluída. Resumo dos dados processados:
+2025-09-29 00:46:28,953 - INFO - Empresas processadas: 4494860
+2025-09-29 00:46:28,953 - INFO - Sócios processados: 2019150
+2025-09-29 00:46:28,953 - INFO - Iniciando Fase 4: Consolidação dos dados finais
+2025-09-29 00:46:28,954 - INFO - GoldLayer initialized. Path: C:\Users\Admin\Desktop\Vinicius\stone-cnpj-pipeline\data\gold
+2025-09-29 00:46:28,954 - INFO - Processando camada Gold
+2025-09-29 00:46:28,954 - INFO - Carregando parquet em batches: C:\Users\Admin\Desktop\Vinicius\stone-cnpj-pipeline\data\silver\empresas_silver.parquet
+2025-09-29 00:46:29,049 - INFO - Batch carregado com 100000 registros
+2025-09-29 00:46:29,080 - INFO - Batch carregado com 100000 registros
+2025-09-29 00:46:29,113 - INFO - Batch carregado com 100000 registros
+2025-09-29 00:46:29,144 - INFO - Batch carregado com 100000 registros
+2025-09-29 00:46:29,178 - INFO - Batch carregado com 100000 registros
+2025-09-29 00:46:29,213 - INFO - Batch carregado com 100000 registros
+2025-09-29 00:46:29,246 - INFO - Batch carregado com 100000 registros
+2025-09-29 00:46:29,281 - INFO - Batch carregado com 100000 registros
+2025-09-29 00:46:29,322 - INFO - Batch carregado com 100000 registros
+2025-09-29 00:46:29,353 - INFO - Batch carregado com 100000 registros
+2025-09-29 00:46:29,411 - INFO - Batch carregado com 100000 registros
+2025-09-29 00:46:29,465 - INFO - Batch carregado com 100000 registros
+2025-09-29 00:46:29,522 - INFO - Batch carregado com 100000 registros
+2025-09-29 00:46:29,573 - INFO - Batch carregado com 100000 registros
+2025-09-29 00:46:29,643 - INFO - Batch carregado com 100000 registros
+2025-09-29 00:46:29,712 - INFO - Batch carregado com 100000 registros
+2025-09-29 00:46:29,804 - INFO - Batch carregado com 100000 registros
+2025-09-29 00:46:29,885 - INFO - Batch carregado com 100000 registros
+2025-09-29 00:46:29,954 - INFO - Batch carregado com 100000 registros
+2025-09-29 00:46:30,029 - INFO - Batch carregado com 100000 registros
+2025-09-29 00:46:30,113 - INFO - Batch carregado com 100000 registros
+2025-09-29 00:46:30,166 - INFO - Batch carregado com 100000 registros
+2025-09-29 00:46:30,217 - INFO - Batch carregado com 100000 registros
+2025-09-29 00:46:30,264 - INFO - Batch carregado com 100000 registros
+2025-09-29 00:46:30,317 - INFO - Batch carregado com 100000 registros
+2025-09-29 00:46:30,370 - INFO - Batch carregado com 100000 registros
+2025-09-29 00:46:30,421 - INFO - Batch carregado com 100000 registros
+2025-09-29 00:46:30,467 - INFO - Batch carregado com 100000 registros
+2025-09-29 00:46:30,519 - INFO - Batch carregado com 100000 registros
+2025-09-29 00:46:30,571 - INFO - Batch carregado com 100000 registros
+2025-09-29 00:46:30,643 - INFO - Batch carregado com 100000 registros
+2025-09-29 00:46:30,736 - INFO - Batch carregado com 100000 registros
+2025-09-29 00:46:30,811 - INFO - Batch carregado com 100000 registros
+2025-09-29 00:46:30,857 - INFO - Batch carregado com 100000 registros
+2025-09-29 00:46:30,910 - INFO - Batch carregado com 100000 registros
+2025-09-29 00:46:30,962 - INFO - Batch carregado com 100000 registros
+2025-09-29 00:46:31,011 - INFO - Batch carregado com 100000 registros
+2025-09-29 00:46:31,051 - INFO - Batch carregado com 100000 registros
+2025-09-29 00:46:31,090 - INFO - Batch carregado com 100000 registros
+2025-09-29 00:46:31,131 - INFO - Batch carregado com 100000 registros
+2025-09-29 00:46:31,169 - INFO - Batch carregado com 100000 registros
+2025-09-29 00:46:31,214 - INFO - Batch carregado com 100000 registros
+2025-09-29 00:46:31,254 - INFO - Batch carregado com 100000 registros
+2025-09-29 00:46:31,293 - INFO - Batch carregado com 100000 registros
+2025-09-29 00:46:31,334 - INFO - Batch carregado com 94860 registros
+2025-09-29 00:46:31,527 - INFO - Carregando parquet em batches: C:\Users\Admin\Desktop\Vinicius\stone-cnpj-pipeline\data\silver\socios_silver.parquet
+2025-09-29 00:46:31,619 - INFO - Batch carregado com 100000 registros
+2025-09-29 00:46:31,677 - INFO - Batch carregado com 100000 registros
+2025-09-29 00:46:31,735 - INFO - Batch carregado com 100000 registros
+2025-09-29 00:46:31,798 - INFO - Batch carregado com 100000 registros
+2025-09-29 00:46:31,854 - INFO - Batch carregado com 100000 registros
+2025-09-29 00:46:31,917 - INFO - Batch carregado com 100000 registros
+2025-09-29 00:46:31,987 - INFO - Batch carregado com 100000 registros
+2025-09-29 00:46:32,049 - INFO - Batch carregado com 100000 registros
+2025-09-29 00:46:32,114 - INFO - Batch carregado com 100000 registros
+2025-09-29 00:46:32,182 - INFO - Batch carregado com 100000 registros
+2025-09-29 00:46:32,264 - INFO - Batch carregado com 100000 registros
+2025-09-29 00:46:32,337 - INFO - Batch carregado com 100000 registros
+2025-09-29 00:46:32,404 - INFO - Batch carregado com 100000 registros
+2025-09-29 00:46:32,475 - INFO - Batch carregado com 100000 registros
+2025-09-29 00:46:32,540 - INFO - Batch carregado com 100000 registros
+2025-09-29 00:46:32,611 - INFO - Batch carregado com 100000 registros
+2025-09-29 00:46:32,682 - INFO - Batch carregado com 100000 registros
+2025-09-29 00:46:32,744 - INFO - Batch carregado com 100000 registros
+2025-09-29 00:46:32,811 - INFO - Batch carregado com 100000 registros
+2025-09-29 00:46:32,874 - INFO - Batch carregado com 100000 registros
+2025-09-29 00:46:32,888 - INFO - Batch carregado com 19150 registros
+2025-09-29 00:46:33,016 - INFO - Empresas carregadas: 4494860 registros
+2025-09-29 00:46:33,017 - INFO - Socios carregados: 2019150 registros
+2025-09-29 00:46:45,714 - INFO - Gold salvo: C:\Users\Admin\Desktop\Vinicius\stone-cnpj-pipeline\data\gold\cnpj_gold.parquet (4494860 registros)
+2025-09-29 00:46:46,031 - INFO - Gold layer criada com 4494860 registros.
+2025-09-29 00:46:46,031 - INFO - ===== FIM DO PIPELINE =====

@@ -45,7 +45,7 @@ class GoldLayer:
         socios_file = self.silver_path / "socios_silver.parquet"
 
         if not empresas_file.exists() or not socios_file.exists():
-            logger.warning("Arquivos Parquet da camada Silver nÃ£o encontrados")
+            logger.warning("Arquivos Parquet da camada Silver não foram encontrados")
             return pd.DataFrame(), pd.DataFrame()
 
         df_empresas = self.carregar_parquet_em_batches(empresas_file)

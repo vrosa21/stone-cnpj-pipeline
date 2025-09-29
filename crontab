@@ -1,5 +1,10 @@
-# Pipeline ETL - Receita Federal# Executa todos os dias às 06:00 AM
-0 6 * * * cd /app && python etl/main.py >> logs/cron.log 2>&1
+# Pipeline ETL - Receita Federal
+# Executa todos os dias as 06:00 AM
+# Verifica o ambiente a cada 6 horas
+# Remove logs com mais de 7 dias
+@"
+0 6 * * * root cd /app && /usr/local/bin/python etl/main.py >> logs/cron.log 2>&1
+0 */6 * * * root cd /app && /usr/local/bin/python 0_check_ambiente.py >> logs/health_check.log 2>&1
+0 0 * * 0 root find /app/logs -name "*.log" -mtime +7 -delete
+"@ | Set-Content -Path "crontab" -Encoding UTF8
 
-# Verificação de saúde do sistema - a cada hora
-0 * * * * cd /app && python 0_check_ambiente.py >> logs/health_check.log 2>&1

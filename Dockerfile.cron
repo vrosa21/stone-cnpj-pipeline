@@ -1,23 +1,23 @@
 # Dockerfile.cron
 FROM python:3.11-slim
 
-# Instalar cron e dependencias
+# Instalar cron e dependências
 RUN apt-get update && apt-get install -y cron
 
-# Diretorio de trabalho
+# Diretório de trabalho
 WORKDIR /app
 
-# Copiar requirements e instalar dependencias Python
+# Copiar requirements e instalar dependências Python
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copiar codigo fonte
+# Copiar código fonte
 COPY etl/ ./etl/
 
 # Copiar o arquivo crontab para dentro do container
 COPY crontab /etc/cron.d/etl-cron
 
-# Aplicar permissoes e registrar crontab
+# Aplicar permissões e registrar crontab
 RUN chmod 0644 /etc/cron.d/etl-cron && crontab /etc/cron.d/etl-cron
 
 # Criar pasta de dados e logs

@@ -1,4 +1,4 @@
-version: '3.8'
+# Remova a linha "version: '3.8'" (está obsoleta)
 
 services:
   postgres:
@@ -24,7 +24,7 @@ services:
   etl_app:
     build:
       context: .
-      dockerfile: Dockerfile.cron
+      dockerfile: Dockerfile  # Use Dockerfile simples em vez de Dockerfile.cron
     container_name: receita_etl
     environment:
       - DATABASE_URL=postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}
@@ -37,27 +37,23 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
-    restart: "no" # desativando o loop de carga automÃ¡tico
+    restart: "no"
+    command: ["tail", "-f", "/dev/null"]
 
-  pgladmin:
+  pgadmin:
     image: dpage/pgadmin4:latest
-    container_name: receita_pgladmin
+    container_name: receita_pgadmin
     environment:
-      PGLADMIN_DEFAULT_EMAIL: ${PGLADMIN_EMAIL}
+      PGADMIN_DEFAULT_EMAIL: ${PGLADMIN_EMAIL}
       PGLADMIN_DEFAULT_PASSWORD: ${PGLADMIN_PASSWORD}
     ports:
       - "8080:80"
-    volumes:
-      - pgladmin_data:/var/lib/pgladmin
     networks:
       - etl_network
-    depends_on:
-      - postgres
     restart: unless-stopped
 
 volumes:
   postgres_data:
-  pgladmin_data:
 
 networks:
   etl_network:

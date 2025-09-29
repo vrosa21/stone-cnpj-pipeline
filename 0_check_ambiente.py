@@ -208,9 +208,6 @@ def main():
         print("AMBIENTE COMPLETAMENTE CONFIGURADO!")
         print("Voce pode executar o projeto Stone com confianca!")
         print()
-        print("Proximos passos:")
-        print("   1. Execute: python stone_pipeline_main.py")
-        print("   2. OU: docker-compose up --build")
     else:
         print("AMBIENTE PRECISA DE AJUSTES")
         print("Corrija os problemas apontados acima antes de continuar")

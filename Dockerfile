@@ -1,19 +1,21 @@
 FROM python:3.11-slim
 
-# Definir diretorio de trabalho
 WORKDIR /app
 
-# Copiar arquivo de dependencias
 COPY requirements.txt .
-
-# Instalar dependencias
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copiar codigo fonte
 COPY etl/ ./etl/
 
-# Criar diretorios necessarios
-RUN mkdir -p data/bronze data/silver data/gold logs
+# Cria as pastas de dados em um RUN separado
+RUN mkdir -p data/bronze data/silver data/gold
 
-# Definir comando padrao
-CMD ["python", "etl/main.py"]
+# Cria a pasta de logs em outro RUN
+RUN mkdir -p logs
+
+COPY dashboard/ ./dashboard/
+
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+CMD ["streamlit", "run", "dashboard/app.py", "--server.address", "0.0.0.0"]

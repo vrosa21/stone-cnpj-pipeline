@@ -7,9 +7,9 @@ import os
 from datetime import datetime, timedelta
 import time
 
-# ConfiguraÃ§Ã£o da pÃ¡gina
+# Configuração da página
 st.set_page_config(
-    page_title="Monitor Pipeline de CNPJs", 
+    page_title="Monitor de Pipeline - CNPJ", 
     layout="wide",
     initial_sidebar_state="expanded"
 )
@@ -58,12 +58,12 @@ st.markdown("""
     background-color: var(--stone-light);
 }
 
-/* TÃ­tulos com cor Stone */
+/* Títulos com cor Stone */
 h1, h2, h3 {
     color: var(--stone-dark) !important;
 }
 
-/* MÃ©tricas customizadas */
+/* Métricas customizadas */
 .metric-container {
     background: linear-gradient(135deg, var(--stone-light) 0%, white 100%);
     border-radius: 10px;
@@ -74,32 +74,32 @@ h1, h2, h3 {
 </style>
 """, unsafe_allow_html=True)
 
-# TÃ­tulo principal com estilo Stone
+# Título principal com estilo Stone
 st.markdown("""
 <div style="text-align: center; padding: 2rem; background: linear-gradient(135deg, #00D4AA 0%, #00B894 100%); border-radius: 10px; margin-bottom: 2rem;">
-    <h1 style="color: white; margin: 0; font-weight: 700;">Stone CNPJ Pipeline</h1>
-    <p style="color: white; margin: 0; font-size: 1.2rem; opacity: 0.9;">Dashboard de Monitoramento - Teste SeleÃ§Ã£o Stone</p>
+    <h1 style="color: white; margin: 0; font-weight: 700;">Monitor de Pipeline - CNPJ</h1>
+    <p style="color: white; margin: 0; font-size: 1.2rem; opacity: 0.9;">Dashboard-teste de Monitoramento Stone</p>
 </div>
 """, unsafe_allow_html=True)
 
 # Sidebar com controles
 st.sidebar.header("Controles")
 auto_refresh = st.sidebar.checkbox("Auto-refresh (30s)", False)
-mostrar_graficos = st.sidebar.checkbox("Mostrar GrÃ¡ficos", True)
+mostrar_graficos = st.sidebar.checkbox("Mostrar Gráficos", True)
 mostrar_logs = st.sidebar.checkbox("Mostrar Logs", True)
 mostrar_detalhes = st.sidebar.checkbox("Mostrar Detalhes dos Dados", False)
 
-# FunÃ§Ã£o para ler logs
+# Função para ler logs
 def ler_logs(arquivo_log, linhas=50):
     try:
         if os.path.exists(arquivo_log):
             with open(arquivo_log, 'r', encoding='utf-8') as f:
                 return f.readlines()[-linhas:]
-        return ["Log nÃ£o encontrado"]
+        return ["Log não encontrado"]
     except Exception as e:
         return [f"Erro ao ler log: {str(e)}"]
 
-# FunÃ§Ã£o para obter informaÃ§Ãµes do arquivo
+# Função para obter informações do arquivo
 def info_arquivo(caminho):
     try:
         if os.path.exists(caminho):
@@ -114,8 +114,8 @@ def info_arquivo(caminho):
     except:
         return {'existe': False}
 
-# SeÃ§Ã£o de mÃ©tricas principais
-st.header("MÃ©tricas Principais")
+# Seção de métricas principais
+st.header("Métricas Principais")
 
 col1, col2, col3, col4 = st.columns(4)
 
@@ -130,7 +130,7 @@ with col1:
                 delta=f"{info_empresas['tamanho_mb']} MB"
             )
         else:
-            st.metric("Empresas Processadas", "0", delta="Arquivo nÃ£o encontrado")
+            st.metric("Empresas Processadas", "0", delta="Arquivo não encontrado")
     except Exception as e:
         st.metric("Empresas Processadas", "Erro", delta=str(e)[:20])
 
@@ -140,14 +140,14 @@ with col2:
         if info_socios['existe']:
             df_socios = pd.read_parquet('data/silver/socios_silver.parquet')
             st.metric(
-                "SÃ³cios Processados", 
+                "Sócios Processados", 
                 f"{len(df_socios):,}",
                 delta=f"{info_socios['tamanho_mb']} MB"
             )
         else:
-            st.metric("SÃ³cios Processados", "0", delta="Arquivo nÃ£o encontrado")
+            st.metric("Sócios Processados", "0", delta="Arquivo não encontrado")
     except Exception as e:
-        st.metric("SÃ³cios Processados", "Erro", delta=str(e)[:20])
+        st.metric("Sócios Processados", "Erro", delta=str(e)[:20])
 
 with col3:
     try:
@@ -160,12 +160,12 @@ with col3:
                 delta=f"{info_gold['tamanho_mb']} MB"
             )
         else:
-            st.metric("CNPJs Gold", "0", delta="Arquivo nÃ£o encontrado")
+            st.metric("CNPJs Gold", "0", delta="Arquivo não encontrado")
     except Exception as e:
         st.metric("CNPJs Gold", "Erro", delta=str(e)[:20])
 
 with col4:
-    # Status do Ãºltimo processamento
+    # Status do último processamento
     logs_recentes = ['logs/silver.log', 'logs/gold.log', 'logs/bronze.log']
     ultimo_processamento = None
     
@@ -179,33 +179,33 @@ with col4:
         ultimo_proc = datetime.fromtimestamp(ultimo_processamento)
         delta_tempo = datetime.now() - ultimo_proc
         if delta_tempo.total_seconds() < 3600:  # menos de 1 hora
-            delta_str = f"{int(delta_tempo.total_seconds()/60)} min atrÃ¡s"
+            delta_str = f"{int(delta_tempo.total_seconds()/60)} min atrás"
         else:
-            delta_str = f"{int(delta_tempo.total_seconds()/3600)} h atrÃ¡s"
+            delta_str = f"{int(delta_tempo.total_seconds()/3600)} h atrás"
         
         st.metric(
-            "Ãšltimo Processamento", 
+            "Último Processamento", 
             ultimo_proc.strftime("%d/%m %H:%M"),
             delta=delta_str
         )
     else:
-        st.metric("Ãšltimo Processamento", "Nunca", delta="Sem logs")
+        st.metric("Último Processamento", "Nunca", delta="Sem logs")
 
-# SeÃ§Ã£o de alertas
+# Seção de alertas
 st.header("Status e Alertas")
 
 alertas = []
 
-# Verificar se arquivos existem e estÃ£o atualizados
+# Verificar se arquivos existem e estão atualizados
 arquivos_importantes = {
     'data/silver/empresas_silver.parquet': 'Empresas Silver',
-    'data/silver/socios_silver.parquet': 'SÃ³cios Silver', 
+    'data/silver/socios_silver.parquet': 'Sócios Silver', 
     'data/gold/cnpj_gold.parquet': 'CNPJs Gold'
 }
 
 for arquivo, nome in arquivos_importantes.items():
     if not os.path.exists(arquivo):
-        alertas.append(f"ALERTA: {nome}: Arquivo nÃ£o encontrado")
+        alertas.append(f"ALERTA: {nome}: Arquivo não encontrado")
     else:
         mod_time = os.path.getmtime(arquivo)
         if (datetime.now().timestamp() - mod_time) > 86400:  # 24 horas
@@ -215,7 +215,7 @@ for arquivo, nome in arquivos_importantes.items():
 if os.path.exists('logs/silver.log'):
     mod_time = os.path.getmtime('logs/silver.log')
     if (datetime.now().timestamp() - mod_time) > 86400:
-        alertas.append("ALERTA: Pipeline nÃ£o executou nas Ãºltimas 24 horas")
+        alertas.append("ALERTA: Pipeline não executou nas últimas 24 horas")
 
 if alertas:
     for alerta in alertas:
@@ -223,9 +223,9 @@ if alertas:
 else:
     st.markdown('<div class="alert-success">OK: Todos os sistemas operacionais!</div>', unsafe_allow_html=True)
 
-# SeÃ§Ã£o de grÃ¡ficos
+# Seção de gráficos
 if mostrar_graficos:
-    st.header("VisualizaÃ§Ãµes")
+    st.header("Visualizações")
     
     try:
         if os.path.exists('data/gold/cnpj_gold.parquet'):
@@ -237,25 +237,25 @@ if mostrar_graficos:
             col1, col2 = st.columns(2)
             
             with col1:
-                # GrÃ¡fico de CNPJs com sÃ³cios estrangeiros (CORRIGIDO)
+                # Gráfico de CNPJs com sócios estrangeiros (CORRIGIDO)
                 if 'flag_socio_estrangeiro' in df_gold.columns:
                     flag_counts = df_gold['flag_socio_estrangeiro'].value_counts()
                     
-                    # Criar nomes dinÃ¢micos baseados nos valores reais
+                    # Criar nomes dinâmicos baseados nos valores reais
                     if len(flag_counts) == 2:
-                        labels = ['Sem SÃ³cios Estrangeiros', 'Com SÃ³cios Estrangeiros']
+                        labels = ['Sem Sócios Estrangeiros', 'Com Sócios Estrangeiros']
                         colors = ['#003D34', '#00D4AA']
                     elif flag_counts.index[0] == 0:
-                        labels = ['Sem SÃ³cios Estrangeiros']
+                        labels = ['Sem Sócios Estrangeiros']
                         colors = ['#003D34']
                     else:
-                        labels = ['Com SÃ³cios Estrangeiros']
+                        labels = ['Com Sócios Estrangeiros']
                         colors = ['#00D4AA']
                     
                     fig1 = px.pie(
                         values=flag_counts.values,
                         names=labels,
-                        title="CNPJs com SÃ³cios Estrangeiros",
+                        title="CNPJs com Sócios Estrangeiros",
                         color_discrete_sequence=colors
                     )
                     fig1.update_layout(
@@ -264,44 +264,44 @@ if mostrar_graficos:
                     )
                     st.plotly_chart(fig1, use_container_width=True)
                 else:
-                    st.warning("Coluna 'flag_socio_estrangeiro' nÃ£o encontrada")
+                    st.warning("Coluna 'flag_socio_estrangeiro' não encontrada")
             
             with col2:
-                # GrÃ¡fico de quantidade de sÃ³cios
+                # Gráfico de quantidade de sócios
                 if 'qtde_socios' in df_gold.columns:
                     fig2 = px.histogram(
                         df_gold[df_gold['qtde_socios'] <= 20],  # Filtrar outliers
                         x='qtde_socios', 
-                        title="DistribuiÃ§Ã£o - Quantidade de SÃ³cios",
+                        title="Distribuição - Quantidade de Sócios",
                         nbins=20,
                         color_discrete_sequence=['#00D4AA']
                     )
                     fig2.update_layout(
-                        xaxis_title="Quantidade de SÃ³cios", 
-                        yaxis_title="FrequÃªncia",
+                        xaxis_title="Quantidade de Sócios", 
+                        yaxis_title="Frequência",
                         title_font_color='#003D34',
                         font=dict(color='#003D34')
                     )
                     st.plotly_chart(fig2, use_container_width=True)
                 else:
-                    st.warning("Coluna 'qtde_socios' nÃ£o encontrada")
+                    st.warning("Coluna 'qtde_socios' não encontrada")
             
-            # GrÃ¡fico adicional: Doc Alvo (CORRIGIDO)
+            # Gráfico adicional: Doc Alvo (CORRIGIDO)
             col3, col4 = st.columns(2)
             
             with col3:
                 if 'doc_alvo' in df_gold.columns:
                     doc_alvo_counts = df_gold['doc_alvo'].value_counts()
                     
-                    # Criar nomes dinÃ¢micos baseados nos valores reais
+                    # Criar nomes dinâmicos baseados nos valores reais
                     if len(doc_alvo_counts) == 2:
-                        labels_doc = ['NÃ£o Ã© Doc Alvo', 'Ã‰ Doc Alvo']
+                        labels_doc = ['Não é Doc Alvo', 'É Doc Alvo']
                         colors_doc = ['#003D34', '#7ED321']
                     elif doc_alvo_counts.index[0] == 0:
-                        labels_doc = ['NÃ£o Ã© Doc Alvo']
+                        labels_doc = ['Não é Doc Alvo']
                         colors_doc = ['#003D34']
                     else:
-                        labels_doc = ['Ã‰ Doc Alvo']
+                        labels_doc = ['É Doc Alvo']
                         colors_doc = ['#7ED321']
                     
                     fig3 = px.bar(
@@ -316,10 +316,10 @@ if mostrar_graficos:
                     )
                     st.plotly_chart(fig3, use_container_width=True)
                 else:
-                    st.warning("Coluna 'doc_alvo' nÃ£o encontrada")
+                    st.warning("Coluna 'doc_alvo' não encontrada")
             
             with col4:
-                # MÃ©tricas resumidas com estilo Stone
+                # Métricas resumidas com estilo Stone
                 st.markdown("""
                 <div style="background: linear-gradient(135deg, #E8FFF9 0%, white 100%); 
                            padding: 1.5rem; border-radius: 10px; border-left: 5px solid #00D4AA;">
@@ -330,46 +330,46 @@ if mostrar_graficos:
                 
                 # Verificar se as colunas existem antes de usar
                 if 'flag_socio_estrangeiro' in df_gold.columns:
-                    st.write(f"**Com sÃ³cios estrangeiros:** {df_gold['flag_socio_estrangeiro'].sum():,}")
+                    st.write(f"**Com sócios estrangeiros:** {df_gold['flag_socio_estrangeiro'].sum():,}")
                 else:
-                    st.write("**Com sÃ³cios estrangeiros:** Coluna nÃ£o encontrada")
+                    st.write("**Com sócios estrangeiros:** Coluna não encontrada")
                 
                 if 'doc_alvo' in df_gold.columns:
                     st.write(f"**Documentos alvo:** {df_gold['doc_alvo'].sum():,}")
                 else:
-                    st.write("**Documentos alvo:** Coluna nÃ£o encontrada")
+                    st.write("**Documentos alvo:** Coluna não encontrada")
                 
                 if 'qtde_socios' in df_gold.columns:
-                    st.write(f"**MÃ©dia de sÃ³cios:** {df_gold['qtde_socios'].mean():.2f}")
-                    st.write(f"**MÃ¡ximo de sÃ³cios:** {df_gold['qtde_socios'].max()}")
+                    st.write(f"**Média de sócios:** {df_gold['qtde_socios'].mean():.2f}")
+                    st.write(f"**Máximo de sócios:** {df_gold['qtde_socios'].max()}")
                 else:
-                    st.write("**MÃ©dia de sÃ³cios:** Coluna nÃ£o encontrada")
-                    st.write("**MÃ¡ximo de sÃ³cios:** Coluna nÃ£o encontrada")
+                    st.write("**Média de sócios:** Coluna não encontrada")
+                    st.write("**Máximo de sócios:** Coluna não encontrada")
                 
                 st.markdown("</div>", unsafe_allow_html=True)
         
         else:
-            st.warning("Dados da camada Gold nÃ£o disponÃ­veis para grÃ¡ficos")
+            st.warning("Dados da camada Gold não disponíveis para gráficos")
     
     except Exception as e:
-        st.error(f"Erro ao gerar grÃ¡ficos: {str(e)}")
+        st.error(f"Erro ao gerar gráficos: {str(e)}")
         
-        # Debug: mostrar informaÃ§Ãµes sobre as colunas disponÃ­veis
+        # Debug: mostrar informações sobre as colunas disponíveis
         try:
             if os.path.exists('data/gold/cnpj_gold.parquet'):
                 df_gold = pd.read_parquet('data/gold/cnpj_gold.parquet')
-                st.write("**Colunas disponÃ­veis no dataset Gold:**")
+                st.write("**Colunas disponíveis no dataset Gold:**")
                 st.write(list(df_gold.columns))
                 st.write("**Primeiras linhas do dataset:**")
                 st.dataframe(df_gold.head(3))
         except Exception as debug_e:
             st.error(f"Erro ao fazer debug: {str(debug_e)}")
 
-# SeÃ§Ã£o de detalhes dos dados
+# Seção de detalhes dos dados
 if mostrar_detalhes:
     st.header("Detalhes dos Dados")
     
-    tab1, tab2, tab3 = st.tabs(["Empresas", "SÃ³cios", "Gold"])
+    tab1, tab2, tab3 = st.tabs(["Empresas", "Sócios", "Gold"])
     
     with tab1:
         try:
@@ -379,8 +379,8 @@ if mostrar_detalhes:
                 st.write("**Amostra dos dados:**")
                 st.dataframe(df_empresas.head(10))
                 
-                # InformaÃ§Ãµes sobre colunas
-                st.write("**InformaÃ§Ãµes das colunas:**")
+                # Informações sobre colunas
+                st.write("**Informações das colunas:**")
                 dtypes_info = []
                 for col in df_empresas.columns:
                     dtypes_info.append({
@@ -401,8 +401,8 @@ if mostrar_detalhes:
                 st.write("**Amostra dos dados:**")
                 st.dataframe(df_socios.head(10))
                 
-                # InformaÃ§Ãµes sobre colunas
-                st.write("**InformaÃ§Ãµes das colunas:**")
+                # Informações sobre colunas
+                st.write("**Informações das colunas:**")
                 dtypes_info = []
                 for col in df_socios.columns:
                     dtypes_info.append({
@@ -413,7 +413,7 @@ if mostrar_detalhes:
                 dtypes_df = pd.DataFrame(dtypes_info)
                 st.dataframe(dtypes_df)
         except Exception as e:
-            st.error(f"Erro ao carregar dados de sÃ³cios: {e}")
+            st.error(f"Erro ao carregar dados de sócios: {e}")
     
     with tab3:
         try:
@@ -423,8 +423,8 @@ if mostrar_detalhes:
                 st.write("**Amostra dos dados:**")
                 st.dataframe(df_gold.head(10))
                 
-                # InformaÃ§Ãµes sobre colunas
-                st.write("**InformaÃ§Ãµes das colunas:**")
+                # Informações sobre colunas
+                st.write("**Informações das colunas:**")
                 dtypes_info = []
                 for col in df_gold.columns:
                     dtypes_info.append({
@@ -437,7 +437,7 @@ if mostrar_detalhes:
         except Exception as e:
             st.error(f"Erro ao carregar dados gold: {e}")
 
-# SeÃ§Ã£o de logs
+# Seção de logs
 if mostrar_logs:
     st.header("Logs do Pipeline")
     
@@ -483,7 +483,7 @@ if mostrar_logs:
 st.markdown("---")
 st.markdown("""
 <div style="text-align: center; padding: 1rem; background-color: #003D34; color: white; border-radius: 5px;">
-    <strong>Pipeline Stone CNPJ</strong> | Ãšltima atualizaÃ§Ã£o: """ + datetime.now().strftime("%d/%m/%Y %H:%M:%S") + """
+    <strong>Desenvolvido por Vinicius Rosa Ribeiro</strong> | Última atualização: """ + datetime.now().strftime("%d/%m/%Y %H:%M:%S") + """
 </div>
 """, unsafe_allow_html=True)
 

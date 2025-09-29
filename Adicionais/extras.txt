@@ -1,0 +1,13 @@
+
+# Ativando o docker
+# Build das imagens (primeira vez)
+docker-compose build
+
+# Subir todos os serviços
+docker-compose up -d
+
+# O "-d" executa em background (detached mode)
+
+# Se precisar derrubar a instancia para recomecar
+docker-compose down
+docker system prune -f

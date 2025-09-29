@@ -21,57 +21,57 @@ logging.basicConfig(
         logging.StreamHandler()
     ]
 )
+
 logger = logging.getLogger(__name__)
 
 def main():
-    logger.info("===== INÃCIO DO PIPELINE =====")
-
+    logger.info("===== INÍCIO DO PIPELINE =====")
+    
     # Fase 1: Webscraping
     logger.info("Iniciando Fase 1: Descobrindo URLs dos menores arquivos")
     scraper = WebscrapingStone()
     menores = scraper.executar_webscraping_completo()
+    
     if not menores:
-        logger.error("Nenhum arquivo vÃ¡lido encontrado para download. Encerrando pipeline.")
-        return
-    logger.info(f"Fase 1 concluÃ­da. Arquivos para baixar: {list(menores.keys())}")
-
-    arquivos_para_baixar = {k: v.url_completa for k, v in menores.items()}
-
-    # Fase 2: Bronze
-    logger.info("Iniciando Fase 2: Baixando arquivos selecionados")
+        logger.error("Nenhum arquivo válido encontrado para download. Encerrando pipeline.")
+        return False
+    
+    # Fase 2: Bronze Layer - Download
+    logger.info("Iniciando Fase 2: Download dos arquivos (Bronze Layer)")
     bronze = BronzeLayer()
-    arquivos_baixados = bronze.process(arquivos_para_baixar)
-    if not arquivos_baixados:
-        logger.error("Falha ao baixar arquivos. Encerrando pipeline.")
-        return
-    logger.info(f"Fase 2 concluÃ­da. Arquivos baixados: {list(arquivos_baixados.keys())}")
-
-    # Fase 3: Silver
-    logger.info("Iniciando Fase 3: Processando e limpando dados")
+    sucesso_bronze = bronze.executar_downloads(menores)
+    
+    if not sucesso_bronze:
+        logger.error("Falha na fase Bronze. Encerrando pipeline.")
+        return False
+    
+    # Fase 3: Silver Layer - Processamento e limpeza
+    logger.info("Iniciando Fase 3: Processamento e limpeza (Silver Layer)")
     silver = SilverLayer()
-    resultado_silver = silver.process(arquivos_baixados)
-    logger.info("Fase 3 concluÃ­da. Resumo dos dados processados:")
-
-    if 'empresas' in resultado_silver and not resultado_silver['empresas'].empty:
-        logger.info(f"Empresas processadas: {len(resultado_silver['empresas'])}")
-    else:
-        logger.warning("Nenhum dado de empresas processado.")
-
-    if 'socios' in resultado_silver and not resultado_silver['socios'].empty:
-        logger.info(f"SÃ³cios processados: {len(resultado_silver['socios'])}")
-    else:
-        logger.warning("Nenhum dado de sÃ³cios processado.")
-
-    # Fase 4: Gold
-    logger.info("Iniciando Fase 4: ConsolidaÃ§Ã£o dos dados finais")
+    sucesso_silver = silver.processar_todos_arquivos()
+    
+    if not sucesso_silver:
+        logger.error("Falha na fase Silver. Encerrando pipeline.")
+        return False
+    
+    # Fase 4: Gold Layer - Agregações finais
+    logger.info("Iniciando Fase 4: Agregações e métricas finais (Gold Layer)")
     gold = GoldLayer()
-    resultado_gold = gold.process()
-    if resultado_gold is not None and not resultado_gold.empty:
-        logger.info(f"Gold layer criada com {len(resultado_gold)} registros.")
-    else:
-        logger.warning("Falha ao criar Gold layer.")
-
-    logger.info("===== FIM DO PIPELINE =====")
+    sucesso_gold = gold.processar_camada_gold()
+    
+    if not sucesso_gold:
+        logger.error("Falha na fase Gold. Encerrando pipeline.")
+        return False
+    
+    logger.info("===== PIPELINE EXECUTADO COM SUCESSO =====")
+    return True
 
 if __name__ == "__main__":
-    main()
+    try:
+        sucesso = main()
+        if sucesso:
+            logger.info("Pipeline finalizado com sucesso!")
+        else:
+            logger.error("Pipeline finalizado com falhas.")
+    except Exception as e:
+        logger.exception(f"Erro não tratado no pipeline: {e}")

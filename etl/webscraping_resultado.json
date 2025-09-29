@@ -1,0 +1,161 @@
+{
+  "timestamp": "2025-09-29T00:45:03.394556",
+  "endpoint": "https://arquivos.receitafederal.gov.br/dados/cnpj/dados_abertos_cnpj/2025-09/",
+  "total_arquivos_encontrados": 20,
+  "menores_arquivos": {
+    "empresas": {
+      "nome": "Empresas1.zip",
+      "url_completa": "https://arquivos.receitafederal.gov.br/dados/cnpj/dados_abertos_cnpj/2025-09/Empresas1.zip",
+      "tamanho_bytes": 77843744.0,
+      "numero_arquivo": 1
+    },
+    "socios": {
+      "nome": "Socios8.zip",
+      "url_completa": "https://arquivos.receitafederal.gov.br/dados/cnpj/dados_abertos_cnpj/2025-09/Socios8.zip",
+      "tamanho_bytes": 48976870.0,
+      "numero_arquivo": 8
+    }
+  },
+  "todos_arquivos": [
+    {
+      "nome": "Empresas0.zip",
+      "url_completa": "https://arquivos.receitafederal.gov.br/dados/cnpj/dados_abertos_cnpj/2025-09/Empresas0.zip",
+      "tipo": "empresas",
+      "tamanho_bytes": 460361074.0,
+      "numero_arquivo": 0
+    },
+    {
+      "nome": "Empresas1.zip",
+      "url_completa": "https://arquivos.receitafederal.gov.br/dados/cnpj/dados_abertos_cnpj/2025-09/Empresas1.zip",
+      "tipo": "empresas",
+      "tamanho_bytes": 77843744.0,
+      "numero_arquivo": 1
+    },
+    {
+      "nome": "Empresas2.zip",
+      "url_completa": "https://arquivos.receitafederal.gov.br/dados/cnpj/dados_abertos_cnpj/2025-09/Empresas2.zip",
+      "tipo": "empresas",
+      "tamanho_bytes": 79079607.0,
+      "numero_arquivo": 2
+    },
+    {
+      "nome": "Empresas3.zip",
+      "url_completa": "https://arquivos.receitafederal.gov.br/dados/cnpj/dados_abertos_cnpj/2025-09/Empresas3.zip",
+      "tipo": "empresas",
+      "tamanho_bytes": 85133018.0,
+      "numero_arquivo": 3
+    },
+    {
+      "nome": "Empresas4.zip",
+      "url_completa": "https://arquivos.receitafederal.gov.br/dados/cnpj/dados_abertos_cnpj/2025-09/Empresas4.zip",
+      "tipo": "empresas",
+      "tamanho_bytes": 90330011.0,
+      "numero_arquivo": 4
+    },
+    {
+      "nome": "Empresas5.zip",
+      "url_completa": "https://arquivos.receitafederal.gov.br/dados/cnpj/dados_abertos_cnpj/2025-09/Empresas5.zip",
+      "tipo": "empresas",
+      "tamanho_bytes": 97492168.0,
+      "numero_arquivo": 5
+    },
+    {
+      "nome": "Empresas6.zip",
+      "url_completa": "https://arquivos.receitafederal.gov.br/dados/cnpj/dados_abertos_cnpj/2025-09/Empresas6.zip",
+      "tipo": "empresas",
+      "tamanho_bytes": 94441894.0,
+      "numero_arquivo": 6
+    },
+    {
+      "nome": "Empresas7.zip",
+      "url_completa": "https://arquivos.receitafederal.gov.br/dados/cnpj/dados_abertos_cnpj/2025-09/Empresas7.zip",
+      "tipo": "empresas",
+      "tamanho_bytes": 99030346.0,
+      "numero_arquivo": 7
+    },
+    {
+      "nome": "Empresas8.zip",
+      "url_completa": "https://arquivos.receitafederal.gov.br/dados/cnpj/dados_abertos_cnpj/2025-09/Empresas8.zip",
+      "tipo": "empresas",
+      "tamanho_bytes": 99188389.0,
+      "numero_arquivo": 8
+    },
+    {
+      "nome": "Empresas9.zip",
+      "url_completa": "https://arquivos.receitafederal.gov.br/dados/cnpj/dados_abertos_cnpj/2025-09/Empresas9.zip",
+      "tipo": "empresas",
+      "tamanho_bytes": 94735027.0,
+      "numero_arquivo": 9
+    },
+    {
+      "nome": "Socios0.zip",
+      "url_completa": "https://arquivos.receitafederal.gov.br/dados/cnpj/dados_abertos_cnpj/2025-09/Socios0.zip",
+      "tipo": "socios",
+      "tamanho_bytes": 199772703.0,
+      "numero_arquivo": 0
+    },
+    {
+      "nome": "Socios1.zip",
+      "url_completa": "https://arquivos.receitafederal.gov.br/dados/cnpj/dados_abertos_cnpj/2025-09/Socios1.zip",
+      "tipo": "socios",
+      "tamanho_bytes": 49542266.0,
+      "numero_arquivo": 1
+    },
+    {
+      "nome": "Socios2.zip",
+      "url_completa": "https://arquivos.receitafederal.gov.br/dados/cnpj/dados_abertos_cnpj/2025-09/Socios2.zip",
+      "tipo": "socios",
+      "tamanho_bytes": 49136280.0,
+      "numero_arquivo": 2
+    },
+    {
+      "nome": "Socios3.zip",
+      "url_completa": "https://arquivos.receitafederal.gov.br/dados/cnpj/dados_abertos_cnpj/2025-09/Socios3.zip",
+      "tipo": "socios",
+      "tamanho_bytes": 49245370.0,
+      "numero_arquivo": 3
+    },
+    {
+      "nome": "Socios4.zip",
+      "url_completa": "https://arquivos.receitafederal.gov.br/dados/cnpj/dados_abertos_cnpj/2025-09/Socios4.zip",
+      "tipo": "socios",
+      "tamanho_bytes": 49099170.0,
+      "numero_arquivo": 4
+    },
+    {
+      "nome": "Socios5.zip",
+      "url_completa": "https://arquivos.receitafederal.gov.br/dados/cnpj/dados_abertos_cnpj/2025-09/Socios5.zip",
+      "tipo": "socios",
+      "tamanho_bytes": 49632869.0,
+      "numero_arquivo": 5
+    },
+    {
+      "nome": "Socios6.zip",
+      "url_completa": "https://arquivos.receitafederal.gov.br/dados/cnpj/dados_abertos_cnpj/2025-09/Socios6.zip",
+      "tipo": "socios",
+      "tamanho_bytes": 49067797.0,
+      "numero_arquivo": 6
+    },
+    {
+      "nome": "Socios7.zip",
+      "url_completa": "https://arquivos.receitafederal.gov.br/dados/cnpj/dados_abertos_cnpj/2025-09/Socios7.zip",
+      "tipo": "socios",
+      "tamanho_bytes": 49359999.0,
+      "numero_arquivo": 7
+    },
+    {
+      "nome": "Socios8.zip",
+      "url_completa": "https://arquivos.receitafederal.gov.br/dados/cnpj/dados_abertos_cnpj/2025-09/Socios8.zip",
+      "tipo": "socios",
+      "tamanho_bytes": 48976870.0,
+      "numero_arquivo": 8
+    },
+    {
+      "nome": "Socios9.zip",
+      "url_completa": "https://arquivos.receitafederal.gov.br/dados/cnpj/dados_abertos_cnpj/2025-09/Socios9.zip",
+      "tipo": "socios",
+      "tamanho_bytes": 49531759.0,
+      "numero_arquivo": 9
+    }
+  ]
+}

@@ -7,7 +7,7 @@ import json
 from datetime import datetime
 from typing import List, Dict, Optional
 
-# Garantir que a pasta de logs existe (considerando que o cÃ³digo pode rodar dentro da pasta etl)
+# Garantir que a pasta de logs existe (considerando que o codigo pode rodar dentro da pasta etl)
 log_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'logs'))
 if not os.path.exists(log_dir):
     os.makedirs(log_dir)
@@ -26,7 +26,7 @@ logger = logging.getLogger(__name__)
 class ArquivoEncontrado:
     """
     Representa um arquivo ZIP encontrado: nome, URL, tipo,
-    tamanho em bytes e nÃºmero extraÃ­do.
+    tamanho em bytes e numero extrai­do.
     """
     def __init__(self, nome: str, url_completa: str,
                  tipo: str, tamanho_bytes: float, numero_arquivo: int):
@@ -62,7 +62,7 @@ class WebscrapingStone:
             length = head.headers.get('Content-Length')
             return float(length) if length else float('inf')
         except Exception as e:
-            logger.warning(f"NÃ£o foi possÃ­vel obter tamanho HEAD de {url}: {e}")
+            logger.warning(f"NÃ£o foi possi­vel obter tamanho HEAD de {url}: {e}")
             return float('inf')
 
     def identificar_tipo_arquivo(self, nome_arquivo: str) -> str:
@@ -79,7 +79,7 @@ class WebscrapingStone:
         return int(m.group(1)) if m else 9999
 
     def extrair_arquivos_da_pagina(self, response: requests.Response) -> List[ArquivoEncontrado]:
-        logger.info("Extraindo arquivos .zip da pÃ¡gina")
+        logger.info("Extraindo arquivos .zip da pagina")
         soup = BeautifulSoup(response.content, 'html.parser')
         encontrados: List[ArquivoEncontrado] = []
 
@@ -158,7 +158,7 @@ class WebscrapingStone:
 
         menores = self.encontrar_menores_arquivos(encontrados)
         self.salvar_resultado_webscraping(encontrados, menores)
-        logger.info("Webscraping concluÃ­do com sucesso")
+        logger.info("Webscraping conclui­do com sucesso")
         return menores
 
 if __name__ == "__main__":
