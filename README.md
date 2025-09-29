@@ -5,6 +5,11 @@ Este projeto implementa um pipeline ETL completo seguindo a arquitetura medalhã
 ## Fluxo Completo de Dados
 ## Detalhamento Técnico de Cada Etapa
 
+### Pastas e Arquivos
+<img width="584" height="446" alt="image" src="https://github.com/user-attachments/assets/a7008297-8b24-45c5-bea5-869d24eae1af" />
+
+
+
 ### **Etapa 1: Web Scraping Inteligente**
 **Arquivo**: `webscraping.py`  
 **Tecnologias**: Python + BeautifulSoup4 + Requests HTTP  
