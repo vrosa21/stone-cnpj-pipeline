@@ -1,9 +1,3 @@
-# Pipeline ETL - Stone Challenge: Arquitetura Medalhão para Dados CNPJ
-
-## Visão Executiva
-
-Este projeto implementa um pipeline ETL completo seguindo a arquitetura medalhão (Bronze, Silver, Gold) para processamento de dados de empresas e sócios cadastrados na Receita Federal do Brasil. A proposta de solução visa avaliar competências avançadas em engenharia de dados através de uma abordagem enterprise-ready que combina web scraping inteligente, processamento em lotes, containerização Docker e observabilidade operacional.
-
 ## Arquitetura Técnica
 
 ### Modelo Medalhão Implementado
