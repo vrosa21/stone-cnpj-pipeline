@@ -149,6 +149,8 @@ CREATE INDEX idx_gold_cnpj_doc_alvo ON gold_cnpj(doc_alvo);
 **Tecnologias**: Streamlit + Plotly + Pandas  
 **Acesso**: `http://localhost:8501`
 
+<img width="1864" height="821" alt="image" src="https://github.com/user-attachments/assets/cc684f45-121d-49f9-aac8-e50049bb7f4a" />
+
 #### **Métricas Monitoradas**:
 ```python
 def calcular_kpis():
