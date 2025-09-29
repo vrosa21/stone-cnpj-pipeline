@@ -1,0 +1,27 @@
+cnpj-metadados: https://www.gov.br/receitafederal/dados/cnpj-metadados.pdf
+https://dados.gov.br/dados/conjuntos-dados/cadastro-nacional-da-pessoa-juridica---cnpj
+
+API: https://arquivos.receitafederal.gov.br/dados/cnpj/dados_abertos_cnpj/
+API alternativa: https://arquivos.receitafederal.gov.br/dados/cnpj/dados_abertos_cnpj/
+
+
+Ao tentar rodar esse código obtive a seguinte mensagem de erro:
+
+
+FAZER!
+ - incluir metadados
+ - refinar o webscraping
+ - mostrar a exploração dos dados?
+	+ falar dos 8 digitos do cnpj
+	+ Tipo de dado
+	+CODIGO_QUALIFICACAO_SOCIO COMO NONE
+	+campo "razão_social" de empresas com acento
+	+eliminamos 3868 registros com documento_socio = nan
+	+nome de sócios como "nan" é um problema?
+	+ GOLD:qtde_socios=0|flag_socio_estrangeiro=False|doc_alvo=False|cnpj=22.339.735
+DOCKER: Mantive o container pausado	
+
+"data/gold/cnpj_gold.parquet"
+documento_socio
+
+docker rm -f 22c25393d3dc

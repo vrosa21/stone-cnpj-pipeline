@@ -1,0 +1,64 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: receita_postgres
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - etl_network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  etl_app:
+    build:
+      context: .
+      dockerfile: Dockerfile.cron
+    container_name: receita_etl
+    environment:
+      - DATABASE_URL=postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}
+    volumes:
+      - ./data:/app/data
+      - ./logs:/app/logs
+      - ./etl:/app/etl
+    networks:
+      - etl_network
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: "no" # desativando o loop de carga automÃ¡tico
+
+  pgladmin:
+    image: dpage/pgadmin4:latest
+    container_name: receita_pgladmin
+    environment:
+      PGLADMIN_DEFAULT_EMAIL: ${PGLADMIN_EMAIL}
+      PGLADMIN_DEFAULT_PASSWORD: ${PGLADMIN_PASSWORD}
+    ports:
+      - "8080:80"
+    volumes:
+      - pgladmin_data:/var/lib/pgladmin
+    networks:
+      - etl_network
+    depends_on:
+      - postgres
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+  pgladmin_data:
+
+networks:
+  etl_network:
+    driver: bridge

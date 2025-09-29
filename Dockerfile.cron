@@ -1,0 +1,31 @@
+# Dockerfile.cron
+FROM python:3.11-slim
+
+# Instalar cron e dependencias
+RUN apt-get update && apt-get install -y cron
+
+# Diretorio de trabalho
+WORKDIR /app
+
+# Copiar requirements e instalar dependencias Python
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copiar codigo fonte
+COPY etl/ ./etl/
+
+# Copiar o arquivo crontab para dentro do container
+COPY crontab /etc/cron.d/etl-cron
+
+# Aplicar permissoes e registrar crontab
+RUN chmod 0644 /etc/cron.d/etl-cron && crontab /etc/cron.d/etl-cron
+
+# Criar pasta de dados e logs
+RUN mkdir -p data/bronze data/silver data/gold logs
+
+# Copiar script para iniciar cron e ficar rodando
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+# Rodar o entrypoint
+ENTRYPOINT ["/entrypoint.sh"]
