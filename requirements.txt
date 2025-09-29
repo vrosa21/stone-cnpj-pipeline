@@ -5,10 +5,8 @@ python-dotenv==1.0.0      # Para gerenciar senhas de forma segura
 beautifulsoup4>=4.12.2
 pyarrow>=13.0.0
 sqlalchemy
-
 zipfile36==0.1.3
 tqdm==4.66.1
-
 numpy==1.25.2
 lxml==4.9.3
 streamlit==1.28.0
